@@ -21,7 +21,7 @@ contract Lottery is VRFConsumerBase, Ownable {
     bytes32 private _keyHash;
 
     constructor(
-        uint256 usdEntranceFee_, 
+        //uint256 usdEntranceFee_, 
         address priceFeedAddress_, 
         address vrfCoordinator_, 
         address link_,
@@ -31,7 +31,7 @@ contract Lottery is VRFConsumerBase, Ownable {
     public 
     VRFConsumerBase(vrfCoordinator_, link_) 
     Ownable() {
-        _usdEntranceFee = usdEntranceFee_ * (10 ** 18);
+        _usdEntranceFee = /*usdEntranceFee_*/ 50 * (10 ** 18);
         _ethUsdPriceFeed = AggregatorV3Interface(priceFeedAddress_);
         lotteryState = LOTTERY_STATE.CLOSED;
         _fee = fee_;

@@ -4,7 +4,7 @@ from brownie import (
     config, 
     Contract, 
     MockV3Aggregator, 
-    VRFCoordinator, 
+    VRFCoordinatorMock, 
     LinkToken, 
     interface
 )
@@ -26,7 +26,7 @@ def get_account(index=None, id=None):
 
 contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,
-    "vrf_coordinator": VRFCoordinator,
+    "vrf_coordinator": VRFCoordinatorMock,
     "link_token": LinkToken
 }
 
@@ -56,7 +56,7 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_VALUE):
     print("Deployed!")
 
 def fund_with_link(
-    contract_address, account=None, link_token=None, amount
+    contract_address, account=None, link_token=None, amount=100000000000000000
 ):
     account = account if account else get_account()
     link_token = link_token if link_token else get_contract("link_token")
