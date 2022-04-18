@@ -20,6 +20,8 @@ contract Lottery is VRFConsumerBase, Ownable {
     uint256 private _fee;
     bytes32 private _keyHash;
 
+    event RequestedRandomness(bytes32 requestId_);
+
     constructor(
         //uint256 usdEntranceFee_, 
         address priceFeedAddress_, 
@@ -72,6 +74,7 @@ contract Lottery is VRFConsumerBase, Ownable {
         ) % players.length;*/
         lotteryState = LOTTERY_STATE.CALCULATING_WINNER;
         bytes32 requestId = requestRandomness(_keyHash, _fee);
+        RequestedRandomness(requestId);
     }
 
     function fulfillRandomness(bytes32 requestId_, uint256 randomness_) internal override {
